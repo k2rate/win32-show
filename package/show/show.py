@@ -34,15 +34,19 @@ def open_target(target):
 
     os.system(f'explorer /select,"{ path }"')
 
-def main():
-    if (len(sys.argv) == 1 or (len(sys.argv) == 2 and sys.argv[1] == '.')):
+def show_main(argv=None):
+    if argv is None:
+        argv = sys.argv
+
+    if (len(argv) == 1 or (len(argv) == 2 and argv[1] == '.')):
         os.system(f'explorer .')
         return
 
-    if len(sys.argv) != 2:
+    if len(argv) != 2:
         print('No target to show')
         exit(2)
 
-    open_target(sys.argv[1])
+    open_target(argv[1])
 
-main()
+if __name__ == "__main__":
+    sys.exit(show_main(sys.argv))
